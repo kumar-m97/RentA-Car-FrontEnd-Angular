@@ -8,7 +8,7 @@ node {
 	    withCredentials([sshUserPrivateKey(credentialsId: 'web-server', keyFileVariable: 'SSH_PRIVATE_KEY')]) {
             // SSH connection details
             def sshUser = 'ubuntu'
-            def sshHost = '52.23.232.238'
+            def sshHost = '34.237.242.183'
             def sshPort = 22
 	
 	    sshagent (credentials: ['web-server']){
