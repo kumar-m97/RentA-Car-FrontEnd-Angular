@@ -1,24 +1,25 @@
-node {
-	stage('checkout') {
-           git 'https://github.com/kumar-m97/RentA-Car-FrontEnd-Angular.git'
-           }
-
-	stage('SSH') {
-		
-	    withCredentials([sshUserPrivateKey(credentialsId: 'web-server', keyFileVariable: 'SSH_PRIVATE_KEY')]) {
-            // SSH connection details
-            def sshUser = 'ubuntu'
-            def sshHost = '34.237.242.183'
-            def sshPort = 22
+pipeline{
 	
-	    sshagent (credentials: ['web-server']){
+	agent any
 
-                sh "ssh -o StrictHostKeyChecking=no -i ${SSH_PRIVATE_KEY} -p ${sshPort} ${sshUser}@${sshHost} 'cd /home/RentA-Car-FrontEnd-Angular/dist/RentACar-FrontEnd'"
-		sh "ssh -o StrictHostKeyChecking=no -i ${SSH_PRIVATE_KEY} -p ${sshPort} ${sshUser}@${sshHost} 'git pull'"
-		sh "ssh -o StrictHostKeyChecking=no -i ${SSH_PRIVATE_KEY} -p ${sshPort} ${sshUser}@${sshHost} 'ng serve --host 0.0.0.0 --port 80'"
-            }
+	stages{
+
+		stage('SSH into Remote Server'){
+
+			steps{
+
+				sshagent(credentials: ['react-web-app']) {
+                                	sh 'ssh root@44.203.41.5 "cd /home/RentA-Car-FrontEnd-Angular/"'
+					sh 'ssh root@44.203.42.5 "git pull"
+					sh 'ssh root@44.203.42.5 "ng serve --host 0.0.0.0 --port 80"
+				}
+
+			}
+
+		}
+
+	}
 
 
-       }
-}
+
 }
