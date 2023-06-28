@@ -1,0 +1,8 @@
+version: '3'
+services:
+  react-app:
+    image: app-server:v5
+    container_name: app-server
+    restart: always
+    ports:
+      - "80:80"
