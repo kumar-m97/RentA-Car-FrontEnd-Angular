@@ -5,15 +5,17 @@ pipeline{
 
 	stages{
 
-		stage('Checkout')
+		stage('Checkout'){
 			steps{
 				checkout scm
 			}
+    }
 
-		stage('Docker Build & Push')
+		stage('Docker Build & Push'){
 			steps{
         dockerBuild()
 			}
+    }
 
 /*		stage('Run Container on Remote Server'){
 
