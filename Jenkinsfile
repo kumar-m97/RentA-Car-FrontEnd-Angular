@@ -15,7 +15,7 @@ pipeline{
         dockerBuild()
 			}
 
-		stage('Run Container on Remote Server'){
+/*		stage('Run Container on Remote Server'){
 
 			steps{
 
@@ -32,7 +32,7 @@ pipeline{
 
 			}
 
-		}
+		}*/
 
 	}
 
