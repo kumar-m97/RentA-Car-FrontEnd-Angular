@@ -1,3 +1,4 @@
+@Library('docker-build-sl')
 pipeline{
 	
 	agent any
@@ -11,9 +12,7 @@ pipeline{
 
 		stage('Docker Build & Push')
 			steps{
-				sh 'docker build . -t app-server:v${env.BUILD_ID}'
-				sh 'docker tag app-server:v${BUILD_NUMBER} kumarmlive/kumar:v${env.BUILD_ID}'
-				sh 'docker push kumarmlive/kumar:v${env.BUILD_ID}'
+        dockerBuild()
 			}
 
 		stage('Run Container on Remote Server'){
