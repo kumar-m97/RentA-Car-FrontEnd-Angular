@@ -2,6 +2,9 @@
 pipeline{
 	
 	agent any
+  parameters {
+    string(name: 'Test Parameter', defaultValue: 'Yes', description: 'Just to Test Parameters')
+  }
 
 	stages{
 
